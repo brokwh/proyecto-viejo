@@ -20,7 +20,7 @@
         <h2>Login</h2>
         </div>
         <div class="container justify-content-center h-100">
-            <form action ="validar.php"  method="post" class = "form-signin text-center needs-validation" novalidate>
+            <form action =""  method="post" class = "form-signin text-center needs-validation" novalidate>
                 
                 <div class="form-group">
                         <label>Cargo</label>
@@ -49,7 +49,7 @@
                     <br>  
                     <br>                 
                     <div class="checkbox">                       
-                        <button type="submit" class="btn  btn-dark btn-primary btn-block mb-4 d-flex position-absolute top-20 start-50 translate-middle">Ingresar</button>
+                        <input type="submit" class="btn  btn-dark btn-primary btn-block mb-4 d-flex position-absolute top-20 start-50 translate-middle">Ingresar</button>
             </form>
                     </div>
                     <div class="form-check">

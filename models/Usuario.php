@@ -1,24 +1,36 @@
 <?php
-class Usuario{
+include_once 'db.php';
 
-    private $conn;
-    private $usuario;
+class Usuario extends DB{
+    private $nombre;
+    private $username;
 
-    public function __construct(){
-        require_once("Models/db.php");
-        $this->conn=db::conexion();
-        $this->usuario = array();
-    }
 
-    public function getUsuario(){
-        $sql = "SELECT * FROM usuarios";
-        $query = mysqli_query($this->conn, $sql);
-        
-        while($filas = mysqli_fetch_array($query)){
-            $this->usuario[] = $filas;
+    public function validarUsuario($user, $pass, $pin){
+        //$md5pass = md5($pass);
+        $query = $this->connect()->prepare('SELECT * FROM usuario WHERE tipo = :user AND pass = :pass OR pin = :pin');
+        $query->execute(['user' => $user, 'pass' => $pass, 'pin' => $pin] );
+
+        if($query->rowCount()){
+            return true;
+        }else{
+            return false;
         }
-        return $this->usuario;
     }
-//se definen los atributos y etodos de cada clase del dominio
+
+    public function setUser($user){
+        $query = $this->connect()->prepare('SELECT * FROM usuario WHERE tipo = :user');
+        $query->execute(['user' => $user]);
+        
+        foreach ($query as $currentUser) {
+            $this->nombre = $currentUser['nombre'];
+            $this->usename = $currentUser['username'];
+        }
+    }
+
+    public function getNombre(){
+        return $this->nombre;
+    }
 }
-?>  
+
+?> 

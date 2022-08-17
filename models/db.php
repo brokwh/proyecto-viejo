@@ -1,22 +1,35 @@
 <?php
-class db{
+class DB{
+    private $host;
+    private $db;
+    private $user;
+    private $password;
+    private $charset;
 
-    public static function conexion(){
-        
+    public function __construct(){
+        $this->host     = 'localhost';
+        $this->db       = 'restaurante';
+        $this->user     = 'root';
+        $this->password = "";
+        $this->charset  = 'utf8mb4';
+    }
+
+    function connect(){
+    
         try{
-            $host = "localhost";
-            $user = "root";
-            $pass = "";
-            $bd = "restaurante";
-            $conn = mysqli_connect($host, $user, $pass);
-            mysqli_select_db($conn, $bd);
-            return $conn;
-        }catch(Exception $e){
+            
+            $connection = "mysql:host=" . $this->host . ";dbname=" . $this->db . ";user=" . $this->user;
+            $options = [
+                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_EMULATE_PREPARES   => false,
+            ];
+            $pdo = new PDO($connection, $this->user, $this->password, $options);
+    
+            return $pdo;
 
-            die('Error'. $e->getMessage());
-            echo "Linea de error". $e->getLine();
-
-        }
+        }catch(PDOException $e){
+            print_r('Error connection: ' . $e->getMessage());
+        }   
     }
 }
 ?>
