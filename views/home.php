@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php ?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,7 +17,8 @@
     </div>
 
     <section>
-        <h1>Bienvenido <?php echo $user->getNombre();  ?></h1>
+        <h1>Bienvenido <?php include_once("models/Usuario.php");
+    include_once("models/UsuarioSession.php");?></h1>
     </section>
     
 </body>

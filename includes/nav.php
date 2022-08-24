@@ -30,7 +30,7 @@
       </ul>
     </div>
     <div class="navbar-nav ms-auto">
-                <a href="http://localhost/proyecto/controllers/UsuarioController.php?action=login" class="nav-item nav-link">Login</a>
+                <a href="http://localhost/proyecto/login.php" class="nav-item nav-link">Login</a>
             </div>
   </div>
 
